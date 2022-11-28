@@ -12,14 +12,14 @@ class BoardView: UIView {
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-
-
+    var layout: Layout = Layout(cellSide: 0, origionX: 0, origionY: 0)
+    
     override func draw(_ rect: CGRect) {
    
         cellSide = bounds.width * ratio / 15
         origionY =  bounds.width * (1 - ratio) / 2
         origionX =  bounds.width * (1 - ratio) / 2
-        var layout: Layout = Layout(cellSide: cellSide, origionX: origionX, origionY: origionY)
+        layout = Layout(cellSide: cellSide, origionX: origionX, origionY: origionY)
         layout.drawBoard()
         layout.drawPieces()
      

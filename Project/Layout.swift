@@ -12,6 +12,9 @@ class Layout{
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
+    
+    var human:Human = Human(id: "P1", name: "Player1")
+    var players = [Player]()
 
     init(cellSide:CGFloat, origionX: CGFloat, origionY: CGFloat ){
         self.origionX = origionX
@@ -42,8 +45,11 @@ class Layout{
     }
     
     func drawPieces(){
-        let pieceImage = UIImage(named:"yellow")
-        pieceImage?.draw(in: CGRect(x: origionX, y: origionY, width: cellSide, height: cellSide))
+        
+        for token in human.tokens{
+            let pieceImage = UIImage(named:token.imageName)
+            pieceImage?.draw(in: CGRect(x: origionX + CGFloat(token.locationX) * cellSide, y: origionY + CGFloat(token.locationY) * cellSide, width: cellSide, height: cellSide))
+        }
         
     }
     

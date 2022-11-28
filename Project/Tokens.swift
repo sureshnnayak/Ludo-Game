@@ -7,22 +7,42 @@
 
 import Foundation
 
-/**
- struct Token:Hashable{
+class Token:Hashable{
      
      public var id:String
      public var color:String
-     private var locationX: Int
-     private var locationY: Int
+     public var locationX: Int
+     public var locationY: Int
      private var inHome: BooleanLiteralType
      private var inBase: BooleanLiteralType
+     public let imageName: String
      
-     init(id:String, x: Int, y:Int, color:String){
+    init(id:String, x: Int, y:Int, color:String, img:String){
          self.id = id
          self.locationX = x
          self.locationY = y
          self.color = color
          self.inHome = false
          self.inBase = true
-     }}
- */
+         self.imageName = img
+     }
+    
+     public func isTokeninPlay() -> Bool{
+         if(self.inHome || self.inBase){
+             return false
+        }
+        return true;
+    }
+    
+    static func == (lhs: Token, rhs: Token) -> Bool {
+        if lhs.id == rhs.id{
+            return true
+        }
+        return false
+    }
+    
+    public var hashValue: Int {
+        return id.hashValue
+    }
+ }
+ 
