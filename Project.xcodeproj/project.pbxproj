@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18737267293464D200A32397 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18737266293464D200A32397 /* Player.swift */; };
 		F96796EF2933F5A20045AA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796EE2933F5A20045AA9F /* AppDelegate.swift */; };
 		F96796F12933F5A20045AA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796F02933F5A20045AA9F /* SceneDelegate.swift */; };
 		F96796F32933F5A20045AA9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796F22933F5A20045AA9F /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18737266293464D200A32397 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F96796EB2933F5A20045AA9F /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96796EE2933F5A20045AA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F96796F02933F5A20045AA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				F96796F72933F5A40045AA9F /* Assets.xcassets */,
 				F96796F92933F5A40045AA9F /* LaunchScreen.storyboard */,
 				F96796FC2933F5A40045AA9F /* Info.plist */,
+				18737266293464D200A32397 /* Player.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				F96797212933F63A0045AA9F /* BoardView.swift in Sources */,
 				F9679723293406B90045AA9F /* Layout.swift in Sources */,
 				F96796EF2933F5A20045AA9F /* AppDelegate.swift in Sources */,
+				18737267293464D200A32397 /* Player.swift in Sources */,
 				F96796F12933F5A20045AA9F /* SceneDelegate.swift in Sources */,
 				F982484D29343F1100962437 /* Tokens.swift in Sources */,
 			);
