@@ -8,9 +8,9 @@
 import UIKit
 
 struct Cell{
-    var id: Int
+    var id: String
     var color: Int
-    var nextCell: [Int]
+    var nextCell: [String]
     var safe: Bool
 }
 
@@ -37,6 +37,13 @@ class Layout{
         //return : create the key (4 digits)
         
     }
+    func populateCell( key:String)->Cell{
+       // var cell : Cell = Cell(id: key, color: callMapping[key][0],nextCell: callMapping[key][1], safe: callMapping[key][2])
+        var cell : Cell = Cell(id: key, color: 1,nextCell: ["0001"], safe: true)
+        return cell
+        
+        
+    }
     func drawBoard(){
         
         var key: String
@@ -44,13 +51,31 @@ class Layout{
         for i in 0...14{
             for j in 0...14{
                 key = constreuctKey(x: i,y: j)
-                //cell = Cell()
-                
-                if (i+j)%2 == 0{
+                cell = populateCell(key : key)
+                switch(cell.color){
+                    /*
+                     1: white
+                     2: red
+                     3. Blue
+                     4: green
+                     5: yellow
+                     6. black
+                     */
+                case 1:
+                    drawCell(col:j, row: i, color: UIColor.white)
+                case 2:
+                    drawCell(col:j, row: i, color: UIColor.red)
+                case 3:
+                    drawCell(col:j, row: i, color: UIColor.blue)
+                case 4:
+                    drawCell(col:j, row: i, color: UIColor.green)
+                case 5:
                     drawCell(col:j, row: i, color: UIColor.yellow)
-                }
-                else{
-                    drawCell(col: j, row: i, color: UIColor.green)
+                case 6:
+                    drawCell(col:j, row: i, color: UIColor.black)
+                    
+                default:
+                    drawCell(col:j, row: i, color: UIColor.gray)
                 }
             }
         }
