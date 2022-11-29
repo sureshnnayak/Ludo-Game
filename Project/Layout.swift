@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct call{
+struct Cell{
     var id: Int
     var color: Int
     var nextCell: [Int]
@@ -22,6 +22,8 @@ class Layout{
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
     
+    var arr = Array(repeating: Array(repeating: Cell.self, count: 2), count: 3)
+    
     var human:Human = Human(id: "P1", name: "Player1")
     var players = [Player]()
 
@@ -30,12 +32,20 @@ class Layout{
         self.origionY = origionY
         self.cellSide = cellSide
     }
-    
+    func constreuctKey(x: Int, y:Int)->String{
+        return "0101"
+        //return : create the key (4 digits)
+        
+    }
     func drawBoard(){
         
-        
+        var key: String
+        var cell : Cell
         for i in 0...14{
             for j in 0...14{
+                key = constreuctKey(x: i,y: j)
+                //cell = Cell()
+                
                 if (i+j)%2 == 0{
                     drawCell(col:j, row: i, color: UIColor.yellow)
                 }
