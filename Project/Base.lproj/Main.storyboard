@@ -16,18 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-jb-nFq" customClass="BoardView" customModule="Project" customModuleProvider="target">
-                                <rect key="frame" x="25" y="49" width="974" height="974"/>
-                                <viewLayoutGuide key="safeArea" id="rQv-2p-LOf"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ypQ-jb-nFq" secondAttribute="height" multiplier="1:1" id="sy6-3n-RvC"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDn-7Y-7cc">
                                 <rect key="frame" x="25" y="1148" width="191" height="70"/>
                                 <constraints>
-                                    <constraint firstItem="ypQ-jb-nFq" firstAttribute="width" secondAttribute="height" multiplier="23:14" id="914-mp-UeW"/>
+                                    <constraint firstAttribute="width" secondAttribute="height" multiplier="23:14" id="914-mp-UeW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Dice Roll" buttonSize="medium" titleAlignment="trailing"/>
@@ -36,8 +28,16 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="four" translatesAutoresizingMaskIntoConstraints="NO" id="fLb-YB-PfE">
-                                <rect key="frame" x="446.5" y="1073" width="165" height="165"/>
+                                <rect key="frame" x="356" y="1073" width="165" height="165"/>
                             </imageView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-jb-nFq" customClass="BoardView" customModule="Project" customModuleProvider="target">
+                                <rect key="frame" x="25" y="48" width="974" height="974"/>
+                                <viewLayoutGuide key="safeArea" id="rQv-2p-LOf"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ypQ-jb-nFq" secondAttribute="height" multiplier="1:1" id="sy6-3n-RvC"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,7 +52,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boardView" destination="ypQ-jb-nFq" id="vwd-fJ-wNm"/>
+                        <outlet property="boardView" destination="ypQ-jb-nFq" id="BBi-wy-IbZ"/>
                         <outlet property="dice" destination="fLb-YB-PfE" id="pZj-AV-3fa"/>
                     </connections>
                 </viewController>
