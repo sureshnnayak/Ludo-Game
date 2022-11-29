@@ -9,7 +9,7 @@ import Foundation
 
 protocol Player{
     var tokens: Set<Token> { get set }
-    
+    var color: Int  { get set }
     func rollDice() -> Int
     func canMove(token: Token) -> Bool
     func move(token: Token)
@@ -21,11 +21,14 @@ class Human:Player{
     var id:String
     var name:String
     var tokens: Set<Token> = Set<Token>()
+    var color: Int
     
     init(id:String, name: String){
         self.id = id
         self.name = name
+        self.color = 0
         self.initializeTokens()
+
     }
     
     func initializeTokens(){
@@ -59,13 +62,15 @@ class Computer:Player{
     
     var id:String
     var name:String
-    var color:String
+    //var color:String
     var tokens: Set<Token> = Set<Token>()
+    var color:Int
     
     init(id:String, name: String, color:String){
         self.id = id
         self.name = name
-        self.color = color
+        self.color = 0
+        
     }
     
     func rollDice() -> Int {
