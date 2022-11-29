@@ -19,18 +19,18 @@
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" verticalCompressionResistancePriority="749" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CDn-7Y-7cc">
                                 <rect key="frame" x="25" y="1148" width="191" height="70"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondAttribute="height" multiplier="23:14" id="914-mp-UeW"/>
+                                    <constraint firstAttribute="width" secondAttribute="height" multiplier="23:14" constant="191" id="914-mp-UeW"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Dice Roll" buttonSize="medium" titleAlignment="trailing"/>
                                 <connections>
-                                    <action selector="rollDice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DsC-7U-mvf"/>
+                                    <action selector="rollDice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCw-eo-u1O"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="four" translatesAutoresizingMaskIntoConstraints="NO" id="fLb-YB-PfE">
                                 <rect key="frame" x="356" y="1073" width="165" height="165"/>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-jb-nFq" customClass="BoardView" customModule="Project" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-jb-nFq" customClass="BoardView" customModule="Project" customModuleProvider="target">
                                 <rect key="frame" x="25" y="48" width="974" height="974"/>
                                 <viewLayoutGuide key="safeArea" id="rQv-2p-LOf"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
@@ -43,17 +43,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CDn-7Y-7cc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="4rM-8G-wBH"/>
-                            <constraint firstItem="ypQ-jb-nFq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="Cs4-3i-pOS"/>
-                            <constraint firstItem="fLb-YB-PfE" firstAttribute="leading" secondItem="CDn-7Y-7cc" secondAttribute="trailing" constant="331" id="PX2-Kh-EzH"/>
+                            <constraint firstItem="ypQ-jb-nFq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="Cs4-3i-pOS"/>
+                            <constraint firstItem="fLb-YB-PfE" firstAttribute="leading" secondItem="CDn-7Y-7cc" secondAttribute="trailing" constant="140" id="PX2-Kh-EzH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ypQ-jb-nFq" secondAttribute="trailing" constant="25" id="WJH-aB-XBT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CDn-7Y-7cc" secondAttribute="bottom" constant="128" id="dbN-iR-4Id"/>
-                            <constraint firstItem="fLb-YB-PfE" firstAttribute="top" secondItem="ypQ-jb-nFq" secondAttribute="bottom" constant="50" id="mMy-EF-Cis"/>
+                            <constraint firstItem="fLb-YB-PfE" firstAttribute="top" secondItem="ypQ-jb-nFq" secondAttribute="bottom" constant="51" id="mMy-EF-Cis"/>
                             <constraint firstItem="ypQ-jb-nFq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="mrd-rb-UJb"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boardView" destination="ypQ-jb-nFq" id="BBi-wy-IbZ"/>
-                        <outlet property="dice" destination="fLb-YB-PfE" id="pZj-AV-3fa"/>
+                        <outlet property="boardView" destination="ypQ-jb-nFq" id="huU-nv-6CM"/>
+                        <outlet property="dice" destination="fLb-YB-PfE" id="nSo-Hq-lEd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
