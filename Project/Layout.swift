@@ -33,13 +33,15 @@ class Layout{
         self.cellSide = cellSide
     }
     func constreuctKey(x: Int, y:Int)->String{
-        return "0101"
+        return String(format: "%02d",x) + String(format: "%02d", y)
+        //return "0101"
         //return : create the key (4 digits)
-        
     }
     func populateCell( key:String)->Cell{
        // var cell : Cell = Cell(id: key, color: callMapping[key][0],nextCell: callMapping[key][1], safe: callMapping[key][2])
-        var cell : Cell = Cell(id: key, color: 1,nextCell: ["0001"], safe: true)
+        //let col : Int = (callMapping[key])!
+        //print("\(#function)",key, callMapping[key]![0], "\n" )
+        var cell : Cell = Cell(id: key, color: Int(truncating: callMapping[key]![0] as! NSNumber),nextCell: ["0001"], safe: true)   
         return cell
         
         
