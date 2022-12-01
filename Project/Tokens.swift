@@ -39,6 +39,23 @@ class Token:Hashable{
         return true;
     }
     
+    public func updateLocation(row: Int, col: Int, val:Int){
+        if (self.inBase == true){
+                return removeFromBase(row: row, col: col, val:val)
+        }
+        self.locationX = row
+        self.locationY = col
+    }
+    
+    func removeFromBase(row: Int, col: Int, val:Int){
+        if (val != 6){
+            return
+        }
+        self.locationX = row
+        self.locationY = col
+        self.inBase = false
+    }
+    
     static func == (lhs: Token, rhs: Token) -> Bool {
         if lhs.id == rhs.id{
             return true

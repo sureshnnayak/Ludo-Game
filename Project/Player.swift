@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Player{
+    var id:String { get set }
     var tokens: Set<Token> { get set }
     var color: String  { get set }
     func rollDice() -> Int
@@ -69,7 +70,17 @@ class Computer:Player{
         self.id = id
         self.name = name
         self.color = color
+        self.initializeTokens()
         
+    }
+    
+    func initializeTokens(){
+        tokens.removeAll()
+        var homeIds : [String] = tokenHomes[self.color]!
+        
+        for i in 0...3{
+            tokens.insert(Token(id:self.id+String(i+1), x:Int(homeIds[i].prefix(2)) ?? 0, y:Int(homeIds[i].suffix(2)) ?? 0 ,color: self.color,img: self.color))
+        }
     }
     
     func rollDice() -> Int {

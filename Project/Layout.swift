@@ -21,7 +21,7 @@ class Layout{
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-    var arr = Array(repeating: Array(repeating: Cell.self, count: 2), count: 3)
+    //var arr = Array(repeating: Array(repeating: Cell.self, count: 2), count: 3)
     
     static var shared : Layout = Layout()
     
