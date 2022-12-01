@@ -91,17 +91,17 @@ class Computer:Player{
     
 }
 
-protocol Creator{
+protocol PlayerCreator{
     func createPlayer(playerId:String, name:String, color: String)->Player;
 }
 
-class HumanCreator:Creator{
+class HumanCreator:PlayerCreator{
     func createPlayer(playerId:String, name:String, color: String)->Player{
         return Human(id:playerId , name: name, color: color)
     }
 }
 
-class ComputerCreator:Creator{
+class ComputerCreator:PlayerCreator{
     func createPlayer(playerId:String, name:String, color: String)->Player{
         return Computer(id:playerId , name: name, color: color)
     }
