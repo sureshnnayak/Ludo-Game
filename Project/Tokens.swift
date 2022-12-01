@@ -16,11 +16,16 @@ class Token:Hashable{
      private var inHome: BooleanLiteralType
      private var inBase: BooleanLiteralType
      public let imageName: String
+    
+     public var homeLocationX: Int
+     public var homeLocationY: Int
      
     init(id:String, x: Int, y:Int, color:String, img:String){
          self.id = id
          self.locationX = x
          self.locationY = y
+         self.homeLocationX = x
+         self.homeLocationY = y
          self.color = color
          self.inHome = false
          self.inBase = true

@@ -9,7 +9,7 @@ import Foundation
 
 protocol Player{
     var tokens: Set<Token> { get set }
-    var color: Int  { get set }
+    var color: String  { get set }
     func rollDice() -> Int
     func canMove(token: Token) -> Bool
     func move(token: Token)
@@ -21,23 +21,22 @@ class Human:Player{
     var id:String
     var name:String
     var tokens: Set<Token> = Set<Token>()
-    var color: Int
+    var color: String
     
-    init(id:String, name: String){
+    init(id:String, name: String, color: String){
         self.id = id
         self.name = name
-        self.color = 0
+        self.color = color
         self.initializeTokens()
-
     }
     
     func initializeTokens(){
         tokens.removeAll()
+        var homeIds : [String] = tokenHomes[self.color]!
         
-        tokens.insert(Token(id:self.id+"1", x:0,y:0,color: "yellow",img: "yellow"))
-        tokens.insert(Token(id:self.id+"2", x:0,y:1,color: "yellow",img: "yellow"))
-        tokens.insert(Token(id:self.id+"3", x:1,y:0,color: "yellow",img: "yellow"))
-        tokens.insert(Token(id:self.id+"4", x:1,y:1,color: "yellow",img: "yellow"))
+        for i in 0...3{
+            tokens.insert(Token(id:self.id+String(i+1), x:Int(homeIds[i].prefix(2)) ?? 0, y:Int(homeIds[i].suffix(2)) ?? 0 ,color: self.color,img: self.color))
+        }
     }
     
     func rollDice() -> Int {
@@ -64,12 +63,12 @@ class Computer:Player{
     var name:String
     //var color:String
     var tokens: Set<Token> = Set<Token>()
-    var color:Int
+    var color:String
     
-    init(id:String, name: String, color:String){
+    init(id:String, name: String, color: String){
         self.id = id
         self.name = name
-        self.color = 0
+        self.color = color
         
     }
     
@@ -91,3 +90,21 @@ class Computer:Player{
     
     
 }
+
+protocol Creator{
+    func createPlayer(playerId:String, name:String, color: String)->Player;
+}
+
+class HumanCreator:Creator{
+    func createPlayer(playerId:String, name:String, color: String)->Player{
+        return Human(id:playerId , name: name, color: color)
+    }
+}
+
+class ComputerCreator:Creator{
+    func createPlayer(playerId:String, name:String, color: String)->Player{
+        return Computer(id:playerId , name: name, color: color)
+    }
+}
+
+
