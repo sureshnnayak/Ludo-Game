@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var human:Human = Human(id: "P1", name: "Player1")
+    var human1:Human = Human(id: "P1", name: "Player1", color:"green")
     
     @IBOutlet weak var dice: UIImageView!
     @IBOutlet weak var boardView: BoardView!
@@ -19,8 +19,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        human.initializeTokens()
-        boardView.layout.human.tokens = human.tokens
+        human1.initializeTokens()
+        boardView.layout.players[0].tokens = human1.tokens
         
         dice.image = UIImage(named: "five")
         
