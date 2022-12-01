@@ -12,18 +12,41 @@ class BoardView: UIView {
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-    var layout: Layout = Layout(cellSide: 0, origionX: 0, origionY: 0)
-    
+    //var layout: Layout = Layout(cellSide: 0, origionX: 0, origionY: 0, ratio: 0)
+    var shadowPlayers : [Player] = []
     override func draw(_ rect: CGRect) {
    
         cellSide = bounds.width * ratio / 15
         origionY =  bounds.width * (1 - ratio) / 2
         origionX =  bounds.width * (1 - ratio) / 2
-        layout = Layout(cellSide: cellSide, origionX: origionX, origionY: origionY)
+        var layout = Layout.shared
+        layout.setInstance(cellSide: cellSide, origionX: origionX, origionY: origionY, ratio: ratio)
+        
         layout.drawBoard()
-        layout.drawPieces()
+        self.drawPieces()
      
     }
+    
+    func drawPieces(){
+        
+        for human in shadowPlayers{
+            for token in human.tokens{
+                let pieceImage = UIImage(named:token.imageName)
+                pieceImage?.draw(in: CGRect(x: origionX + CGFloat(token.locationX) * cellSide, y: origionY + CGFloat(token.locationY) * cellSide, width: cellSide, height: cellSide))
+            }
+        }
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let first = touches.first!
+        let fingerLocation = first.location(in: self)
+        
+        let fromCol : Int = Int((fingerLocation.x - origionX)/cellSide)
+        let fromRow : Int = Int((fingerLocation.y - origionY)/cellSide)
+        print(fromCol,fromRow)
+    }
+    
     
 //    func drawBoard(){
 //        for i in 0...14{

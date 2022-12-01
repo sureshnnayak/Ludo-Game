@@ -17,25 +17,24 @@ struct Cell{
 
 
 class Layout{
-    let ratio: CGFloat = 0.9
+    var ratio: CGFloat = 0.9
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-    var players : [Player] = []
     var arr = Array(repeating: Array(repeating: Cell.self, count: 2), count: 3)
     
-
-    init(cellSide:CGFloat, origionX: CGFloat, origionY: CGFloat ){
+    static var shared : Layout = Layout()
+    
+    private init(){
+    }
+    
+    func setInstance(cellSide:CGFloat, origionX: CGFloat, origionY: CGFloat, ratio: CGFloat){
         self.origionX = origionX
         self.origionY = origionY
         self.cellSide = cellSide
-//        var human1:Human = Human(id: "P1", name: "Player1", color: "yellow")
-//        var human2:Human = Human(id: "P2", name: "Player2", color: "green")
-//        var human3:Human = Human(id: "P3", name: "Player3", color: "blue")
-//        var human4:Human = Human(id: "P4", name: "Player4", color: "red")
-//        self.players.append(human2)
-        self.createPlayers(type: ["Human"], colors: ["red","yellow"])
+        self.ratio = ratio
     }
+    
     func constreuctKey(x: Int, y:Int)->String{
         return String(format: "%02d",x) + String(format: "%02d", y)
         //return "0101"
@@ -95,29 +94,13 @@ class Layout{
         
     }
     
-    func drawPieces(){
-        
-        for human in players{
-            for token in human.tokens{
-                let pieceImage = UIImage(named:token.imageName)
-                pieceImage?.draw(in: CGRect(x: origionX + CGFloat(token.locationX) * cellSide, y: origionY + CGFloat(token.locationY) * cellSide, width: cellSide, height: cellSide))
-            }
-        }
-        
-    }
-    
-    func getNextCell(currentX :Int, currentY: Int, jumps: Int, player: Player ){
-        
-        
-    }
-    
-    func createPlayers(type: [String], colors:[String]){
-        for i in 0...(3){
-            var human1:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "red")
-            var human2:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "blue")
-            self.players.append(human1)
-            self.players.append(human2)
-        }
-    }
+//    func createPlayers(type: [String], colors:[String]){
+//        for i in 0...(3){
+//            var human1:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "red")
+//            var human2:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "blue")
+//            self.players.append(human1)
+//            self.players.append(human2)
+//        }
+//    }
 
 }
