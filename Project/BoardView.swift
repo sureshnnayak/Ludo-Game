@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class BoardView: UIView {
     let ratio: CGFloat = 0.9
@@ -14,6 +15,8 @@ class BoardView: UIView {
     var cellSide: CGFloat =  10
     //var layout: Layout = Layout(cellSide: 0, origionX: 0, origionY: 0, ratio: 0)
     var shadowPlayers : [Player] = []
+    //var ludoDelegate : LudoDelegate? = nil
+    
     override func draw(_ rect: CGRect) {
    
         cellSide = bounds.width * ratio / 15
@@ -45,6 +48,7 @@ class BoardView: UIView {
         let fromCol : Int = Int((fingerLocation.x - origionX)/cellSide)
         let fromRow : Int = Int((fingerLocation.y - origionY)/cellSide)
         print(fromCol,fromRow)
+        //ludoDelegate?.moveToken(startRow: fromCol, startColumn: fromRow, endRow: 06, endCol: 13, diceValue: <#T##Int#>)
     }
     
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		180D688829388E8D00E0D13D /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D688729388E8D00E0D13D /* GameEngine.swift */; };
+		180D688A29393B1800E0D13D /* LudoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D688929393B1800E0D13D /* LudoDelegate.swift */; };
 		18737267293464D200A32397 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18737266293464D200A32397 /* Player.swift */; };
 		F96796EF2933F5A20045AA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796EE2933F5A20045AA9F /* AppDelegate.swift */; };
 		F96796F12933F5A20045AA9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796F02933F5A20045AA9F /* SceneDelegate.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		180D688729388E8D00E0D13D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		180D688929393B1800E0D13D /* LudoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LudoDelegate.swift; sourceTree = "<group>"; };
 		18737266293464D200A32397 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		F96796EB2933F5A20045AA9F /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96796EE2933F5A20045AA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F96796F92933F5A40045AA9F /* LaunchScreen.storyboard */,
 				F96796FC2933F5A40045AA9F /* Info.plist */,
 				180D688729388E8D00E0D13D /* GameEngine.swift */,
+				180D688929393B1800E0D13D /* LudoDelegate.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180D688A29393B1800E0D13D /* LudoDelegate.swift in Sources */,
 				F9F149C52935ECB100C977C7 /* BoardStructure.swift in Sources */,
 				F96796F32933F5A20045AA9F /* ViewController.swift in Sources */,
 				F96797212933F63A0045AA9F /* BoardView.swift in Sources */,

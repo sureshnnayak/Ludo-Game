@@ -10,6 +10,12 @@ import Foundation
 class GameEngine{
     var players: [Player] = []
     
+    static var shared : GameEngine = GameEngine()
+    
+    private init(){
+        
+    }
+    
     func initializePlayers(){
         var colors = ["red","yellow"]
         var player: Player
@@ -22,7 +28,27 @@ class GameEngine{
         }
     }
     
-    func moveToken(startRow: Int, startColumn: Int, diceValue: Int){
-        
+    func moveToken (startRow: Int, startColumn: Int, endRow: Int, endCol: Int, diceValue: Int){
+        var activePlayer : Player = players[1]
+//        for i in players{
+//            if (i.id == player.id){
+//                var activePlayer : Player = i
+//                break
+//            }
+//        }
+        //let playingPlayer : Player = activePlayer
+        guard let candidate = tokenAt(startRow: startRow, startColumn: startColumn, player: activePlayer) else {
+            return
+        }
+        candidate.updateLocation(row: endRow, col: endCol, val:diceValue)
+    }
+    
+    private func tokenAt(startRow: Int, startColumn: Int, player: Player)->Token?{
+        for token in player.tokens{
+            if (token.locationX == startRow)&&(token.locationY == startColumn){
+                return token
+            }
+        }
+        return nil
     }
 }
