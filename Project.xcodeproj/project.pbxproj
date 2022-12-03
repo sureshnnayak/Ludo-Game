@@ -46,6 +46,7 @@
 		180D688729388E8D00E0D13D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		180D688929393B1800E0D13D /* LudoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LudoDelegate.swift; sourceTree = "<group>"; };
 		18737266293464D200A32397 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		F9364C94293AD7D600C432AA /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		F96796EB2933F5A20045AA9F /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96796EE2933F5A20045AA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F96796F02933F5A20045AA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,19 +115,20 @@
 			isa = PBXGroup;
 			children = (
 				F96796EE2933F5A20045AA9F /* AppDelegate.swift */,
+				180D688929393B1800E0D13D /* LudoDelegate.swift */,
 				F96796F02933F5A20045AA9F /* SceneDelegate.swift */,
 				F96797202933F63A0045AA9F /* BoardView.swift */,
 				18737266293464D200A32397 /* Player.swift */,
 				F9679722293406B90045AA9F /* Layout.swift */,
 				F9F149C42935ECB100C977C7 /* BoardStructure.swift */,
 				F96796F22933F5A20045AA9F /* ViewController.swift */,
+				F9364C94293AD7D600C432AA /* TODO.md */,
 				F96796F42933F5A20045AA9F /* Main.storyboard */,
 				F982484C29343F1100962437 /* Tokens.swift */,
 				F96796F72933F5A40045AA9F /* Assets.xcassets */,
 				F96796F92933F5A40045AA9F /* LaunchScreen.storyboard */,
 				F96796FC2933F5A40045AA9F /* Info.plist */,
 				180D688729388E8D00E0D13D /* GameEngine.swift */,
-				180D688929393B1800E0D13D /* LudoDelegate.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
