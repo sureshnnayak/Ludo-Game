@@ -43,7 +43,7 @@ class GameEngine{
     func moveToken(token:Token, diceVal: Int){
         var temp:Int = diceVal
         var cell:String = token.id
-        
+        print(cell)
         
         while(temp > 0){
             //get next cell()
@@ -51,8 +51,9 @@ class GameEngine{
             var cellArray:Array<String>
             cellArray = callMapping[cell]![2] as! Array<String>
             cell = cellArray[0]
+            print("Next cell is : ", cell)
         }
-        print(cell)
+        //print(cell)
         
         var row: Int = Int(cell.prefix(2)) ?? 0
         var col: Int = Int(cell.suffix(2)) ?? 0

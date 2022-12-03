@@ -45,6 +45,7 @@ class Token:Hashable{
 //        }
         self.locationX = row
         self.locationY = col
+        self.id = String(format: "%02d",row) + String(format: "%02d", col)
         self.inBase = false
     }
     
