@@ -12,7 +12,7 @@ protocol Player{
     var tokens: Set<Token> { get set }
     var color: String  { get set }
     func rollDice() -> Int
-    func canMove(token: Token) -> Bool // take Dice input 
+    func canMove(token: Token, diceVal:Int) -> Bool // take Dice input
     func move(token: Token)
     func kill(token: Token)
 }
@@ -36,7 +36,7 @@ class Human:Player{
         var homeIds : [String] = tokenHomes[self.color]!
         
         for i in 0...3{
-            tokens.insert(Token(id:homeIds[i], x:Int(homeIds[i].prefix(2)) ?? 0, y:Int(homeIds[i].suffix(2)) ?? 0 ,color: self.color,img: self.color))
+            tokens.insert(Token(id:homeIds[i], homelocation: homeIds[i], color: self.color,img: self.color))
         }
     }
     
@@ -44,7 +44,8 @@ class Human:Player{
         return Int.random(in: 1...6)
     }
     
-    func canMove(token: Token) -> Bool {
+    func canMove(token: Token, diceVal:Int) -> Bool {
+        //if token.homeLocation 
         return true;
     }
     
@@ -79,7 +80,7 @@ class Computer:Player{
         var homeIds : [String] = tokenHomes[self.color]!
         
         for i in 0...3{
-            tokens.insert(Token(id:homeIds[i], x:Int(homeIds[i].prefix(2)) ?? 0, y:Int(homeIds[i].suffix(2)) ?? 0 ,color: self.color,img: self.color))
+            tokens.insert(Token(id:homeIds[i], homelocation: homeIds[i], color: self.color,img: self.color))
         }
     }
     
@@ -87,7 +88,7 @@ class Computer:Player{
         return Int.random(in: 1...6)
     }
     
-    func canMove(token: Token) -> Bool {
+    func canMove(token: Token, diceVal:Int) -> Bool {
         return true;
     }
     

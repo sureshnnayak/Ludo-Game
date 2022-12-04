@@ -20,7 +20,7 @@ class GameEngine{
      */
     func move(player:Player, diceVal:Int){
         for t in player.tokens{
-            if player.canMove(token: t){
+            if player.canMove(token: t, diceVal: diceVal){
                 moveToken(token:t, diceVal: diceVal)
                 return
             }
@@ -42,7 +42,7 @@ class GameEngine{
     
     func moveToken(token:Token, diceVal: Int){
         var temp:Int = diceVal
-        var cell:String = token.id
+        var cell:String = token.location
         print(cell)
         
         while(temp > 0){

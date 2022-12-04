@@ -35,7 +35,10 @@ class BoardView: UIView {
         for human in shadowPlayers{
             for token in human.tokens{
                 let pieceImage = UIImage(named:token.imageName)
-                pieceImage?.draw(in: CGRect(x: origionX + CGFloat(token.locationX) * cellSide, y: origionY + CGFloat(token.locationY) * cellSide, width: cellSide, height: cellSide))
+                let x = Int(token.location.prefix(2))!
+                let y = Int(token.location.suffix(2))!
+                
+                pieceImage?.draw(in: CGRect(x: origionX + CGFloat(x) * cellSide, y: origionY + CGFloat(y) * cellSide, width: cellSide, height: cellSide))
             }
         }
         
