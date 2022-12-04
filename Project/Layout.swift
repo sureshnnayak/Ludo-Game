@@ -7,11 +7,9 @@
 
 import UIKit
 
-struct Cell{
+struct Box{
     var id: String
     var color: Int
-    var nextCell: [String]
-    var safe: Bool
 }
 
 
@@ -40,24 +38,24 @@ class Layout{
         //return "0101"
         //return : create the key (4 digits)
     }
-    func populateCell( key:String)->Cell{
+    func populateCell( key:String)->Box{
        // var cell : Cell = Cell(id: key, color: callMapping[key][0],nextCell: callMapping[key][1], safe: callMapping[key][2])
         //let col : Int = (callMapping[key])!
         //print("\(#function)",key, callMapping[key]![0], "\n" )
-        var cell : Cell = Cell(id: key, color: Int(truncating: callMapping[key]![0] as! NSNumber),nextCell: ["0001"], safe: true)   
-        return cell
+        var box : Box = Box(id: key, color: Int(truncating: cellMapping[key]![0] as! NSNumber))
+        return box
         
         
     }
     func drawBoard(){
         
         var key: String
-        var cell : Cell
+        var box : Box
         for i in 0...14{
             for j in 0...14{
                 key = constreuctKey(x: i,y: j)
-                cell = populateCell(key : key)
-                switch(cell.color){
+                box = populateCell(key : key)
+                switch(box.color){
                     /*
                      1: white
                      2: red
@@ -93,14 +91,5 @@ class Layout{
         path.fill()
         
     }
-    
-//    func createPlayers(type: [String], colors:[String]){
-//        for i in 0...(3){
-//            var human1:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "red")
-//            var human2:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: "blue")
-//            self.players.append(human1)
-//            self.players.append(human2)
-//        }
-//    }
 
 }

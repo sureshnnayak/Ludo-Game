@@ -36,7 +36,7 @@ class Human:Player{
         var homeIds : [String] = tokenHomes[self.color]!
         
         for i in 0...3{
-            tokens.insert(Token(id:homeIds[i], homelocation: homeIds[i], color: self.color,img: self.color))
+            tokens.insert(Token(id: self.id + String(i), homelocation: homeIds[i], color: self.color,img: self.color))
         }
     }
     
@@ -59,7 +59,7 @@ class Human:Player{
                 //get next cell()
                 temp = temp - 1
                 var cellArray:Array<String>
-                cellArray = callMapping[cell]![2] as! Array<String>
+                cellArray = cellMapping[cell]![2] as! Array<String>
                 cell = cellArray[0]
                 if cell == token.finalLocation && temp != 0{
                     return false

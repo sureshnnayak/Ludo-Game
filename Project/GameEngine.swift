@@ -9,6 +9,7 @@ import Foundation
 
 class GameEngine{
     var players: [Player] = []
+    var board = [String:Cell]()
     
     static var shared : GameEngine = GameEngine()
     
@@ -29,14 +30,38 @@ class GameEngine{
         //iterate through all the token to find and mpvable token
         
     }
+    
+    func initializeGame(){
+        initializeBoard()
+        initializePlayers()
+    }
+    
+    func initializeBoard(){
+        for cellKey in cellMapping.keys{
+            let cellDetails = cellMapping[cellKey]
+            let isSafe = (cellDetails![1] as! Int == 1 ? true : false)
+            let cell = Cell(id: cellKey, color: cellDetails?[0] as! Int, nextCells: cellDetails?[2] as! [String], safe: isSafe)
+            board[cellKey] = cell
+        }
+        print(board.count)
+    }
+    
     func initializePlayers(){
-        var colors = ["red","yellow"]
+        let colors = ["red","yellow"]
         var player: Player
         for i in 0...(1){
 //            var human:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: colors[i])
 //            self.players.append(human)
             player = HumanCreator().createPlayer(playerId: "P"+String(i), name: "Player"+String(i), color: colors[i])
             self.players.append(player)
+        }
+        for player in players{
+            for userToken in player.tokens{
+                let location = userToken.location
+                let test: Cell = board[location]!
+                test.addToken(tokenId: userToken.id)
+                print(test.tokens)
+            }
         }
     }
     
@@ -45,11 +70,13 @@ class GameEngine{
         var cell:String = token.location
         var cellArray:Array<String>
         
-        print(cell)
+        print("before removing" , cell, board[cell]?.tokens)
+        board[cell]?.removeToken(tokenId: token.id)
+        print("After removing" , cell, board[cell]?.tokens)
         
         // home location
         if diceVal == 6 && token.location == token.homeLocation{
-            cellArray = callMapping[cell]![2] as! Array<String>
+            cellArray = cellMapping[cell]![2] as! Array<String>
             cell = cellArray[0]
         }
         
@@ -58,11 +85,11 @@ class GameEngine{
             while(temp > 0){
                 //get next cell()
                 temp = temp - 1
-                cellArray = callMapping[cell]![2] as! Array<String>
+                cellArray = cellMapping[cell]![2] as! Array<String>
                 
                 if cellArray.count == 2{
                     var cell2:String = cellArray[1]
-                    if colorCodes[token.color] == callMapping[cell2]![0] as! Int{
+                    if colorCodes[token.color] == cellMapping[cell2]![0] as! Int{
                         cell = cellArray[1]
                         continue
                     }
@@ -75,7 +102,9 @@ class GameEngine{
             }
         
         }
-        //print(cell)
+        print("before adding" , cell, board[cell]?.tokens)
+        board[cell]?.addToken(tokenId: token.id)
+        print("After adding" , cell, board[cell]?.tokens)
         
         var row: Int = Int(cell.prefix(2)) ?? 0
         var col: Int = Int(cell.suffix(2)) ?? 0
