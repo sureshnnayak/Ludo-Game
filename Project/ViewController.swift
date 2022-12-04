@@ -22,7 +22,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        gameEngine.initializePlayers()
+        gameEngine.initializeGame()
         boardView.shadowPlayers = gameEngine.players
         //boardView.ludoDelegate = self
         dice.image = UIImage(named: "five")

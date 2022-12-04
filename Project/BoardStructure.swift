@@ -17,7 +17,7 @@ import Foundation
  5: yellow
  6. black
  */
-public var callMapping = ["0000":[3,1,["0001"]],
+public var cellMapping = ["0000":[3,1,["0001"]],
                    "0001":[3,1,["0001"]],
                    "0002":[3,1,["0001"]],
                    "0003":[3,1,["0001"]],
