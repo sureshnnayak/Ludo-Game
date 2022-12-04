@@ -45,7 +45,29 @@ class Human:Player{
     }
     
     func canMove(token: Token, diceVal:Int) -> Bool {
-        //if token.homeLocation 
+        if token.homeLocation == token.location{
+            if diceVal != 6{
+                return false
+            }
+        }
+        
+        if token.homeStretch {
+            var temp:Int = diceVal
+            var cell:String = token.location
+            
+            while(temp > 0){
+                //get next cell()
+                temp = temp - 1
+                var cellArray:Array<String>
+                cellArray = callMapping[cell]![2] as! Array<String>
+                cell = cellArray[0]
+                if cell == token.finalLocation && temp != 0{
+                    return false
+                }
+            }
+            
+        }
+        
         return true;
     }
     

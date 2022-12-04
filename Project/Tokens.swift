@@ -8,28 +8,31 @@
 import Foundation
 
 class Token:Hashable{
-     
-     public var id:String
-     public var color:String
-     public var location: String
-     //public var locationY: Int
-     private var inHome: BooleanLiteralType
-     private var inBase: BooleanLiteralType
-     public let imageName: String
-    
-     public var homeLocation: String
+    public var id:String
+    public var color:String
+    public var location: String
+    //public var locationY: Int
+    private var inHome: BooleanLiteralType
+    private var inBase: BooleanLiteralType
+    public let imageName: String
+    public var homeLocation: String
+    public var homeStretch: Bool
+    public var finalLocation: String
      //public var homeLocationY: Int
      
     init(id:String, homelocation : String, color:String, img:String){
-         self.id = id
-         self.location = homelocation
-         //self.locationY = y
+        self.id = id
+        self.location = homelocation
+        //self.locationY = y
         self.homeLocation = homelocation
-         //self.homeLocationY = y
-         self.color = color
-         self.inHome = false
-         self.inBase = true
-         self.imageName = img
+        //self.homeLocationY = y
+        self.color = color
+        self.inHome = false
+        self.inBase = true
+        self.imageName = img
+        self.homeStretch = false
+        self.finalLocation = finalLocations[color]!
+        //self.finalLocation = homelocation // Need to change
      }
     
      public func isTokeninPlay() -> Bool{

@@ -19,6 +19,7 @@ class GameEngine{
      select the token based in the pyer object passed and call move on one of the token
      */
     func move(player:Player, diceVal:Int){
+        
         for t in player.tokens{
             if player.canMove(token: t, diceVal: diceVal){
                 moveToken(token:t, diceVal: diceVal)
@@ -35,7 +36,6 @@ class GameEngine{
 //            var human:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: colors[i])
 //            self.players.append(human)
             player = HumanCreator().createPlayer(playerId: "P"+String(i), name: "Player"+String(i), color: colors[i])
-//            //(pla: "P"+String(i), name: "Player"+String(i), color: colors[i])
             self.players.append(player)
         }
     }
@@ -43,15 +43,37 @@ class GameEngine{
     func moveToken(token:Token, diceVal: Int){
         var temp:Int = diceVal
         var cell:String = token.location
+        var cellArray:Array<String>
+        
         print(cell)
         
-        while(temp > 0){
-            //get next cell()
-            temp = temp - 1
-            var cellArray:Array<String>
+        // home location
+        if diceVal == 6 && token.location == token.homeLocation{
             cellArray = callMapping[cell]![2] as! Array<String>
             cell = cellArray[0]
-            print("Next cell is : ", cell)
+        }
+        
+        //not in home
+        else{
+            while(temp > 0){
+                //get next cell()
+                temp = temp - 1
+                cellArray = callMapping[cell]![2] as! Array<String>
+                
+                if cellArray.count == 2{
+                    var cell2:String = cellArray[1]
+                    if colorCodes[token.color] == callMapping[cell2]![0] as! Int{
+                        cell = cellArray[1]
+                        continue
+                    }
+                    
+                }
+                cell = cellArray[0]
+                
+                
+                print("Next cell is : ", cell)
+            }
+        
         }
         //print(cell)
         

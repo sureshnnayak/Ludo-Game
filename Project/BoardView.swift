@@ -34,6 +34,7 @@ class BoardView: UIView {
         
         for human in shadowPlayers{
             for token in human.tokens{
+                //var c:String = token.color
                 let pieceImage = UIImage(named:token.imageName)
                 let x = Int(token.location.prefix(2))!
                 let y = Int(token.location.suffix(2))!

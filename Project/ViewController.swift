@@ -48,7 +48,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
     
     @IBAction func rollDice(_ sender: Any) {
         //diceVal = Int(arc4random_uniform(6)) + 1
-        diceVal = 1
+        diceVal = 6
         dice.image = UIImage(named:diceImage[diceVal-1])
          
         var nextPlayer: Int
