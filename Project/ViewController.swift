@@ -17,6 +17,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
     @IBOutlet weak var dice: UIImageView!
     @IBOutlet weak var boardView: BoardView!
     
+    @IBOutlet weak var textView: UITextField!
     let diceImage = ["one", "two", "three", "four", "five", "six"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
         boardView.shadowPlayers = gameEngine.players
         //boardView.ludoDelegate = self
         dice.image = UIImage(named: "five")
+        textView.text = boardView.shadowPlayers[0].id + " starts game"
         //gameEngin.Turn()
         /* to click the button automatically
          rollDice((Any).self)
@@ -47,17 +49,18 @@ class ViewController: UIViewController{//}, LudoDelegate {
   
     
     @IBAction func rollDice(_ sender: Any) {
-        //diceVal = Int(arc4random_uniform(6)) + 1
-        diceVal = 6
+        diceVal = Int(arc4random_uniform(6)) + 1
+        //diceVal = 6
         dice.image = UIImage(named:diceImage[diceVal-1])
          
         var nextPlayer: Int
         var currentPlayer: Player
         
+//        textView.text(in: "Player")
         nextPlayer = (prevPlayer + 1 ) % boardView.shadowPlayers.count
         currentPlayer = boardView.shadowPlayers[nextPlayer]
         gameEngine.move(player: currentPlayer, diceVal: diceVal)
-         
+        textView.text = "Player " + currentPlayer.id + "'s turn"
          //move(diceVal)
          prevPlayer = nextPlayer
 //         if nextplayer is computer{

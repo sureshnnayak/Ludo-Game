@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="four" translatesAutoresizingMaskIntoConstraints="NO" id="fLb-YB-PfE">
-                                <rect key="frame" x="356" y="1073" width="165" height="165"/>
+                                <rect key="frame" x="316" y="1073" width="165" height="165"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ypQ-jb-nFq" customClass="BoardView" customModule="Project" customModuleProvider="target">
                                 <rect key="frame" x="25" y="48" width="974" height="974"/>
@@ -38,13 +38,23 @@
                                     <constraint firstAttribute="width" secondItem="ypQ-jb-nFq" secondAttribute="height" multiplier="1:1" id="sy6-3n-RvC"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgO-F6-8dm">
+                                <rect key="frame" x="940" y="1141" width="34" height="41"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="CDn-7Y-7cc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="4rM-8G-wBH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OgO-F6-8dm" secondAttribute="trailing" constant="50" id="BD1-WA-LiN"/>
                             <constraint firstItem="ypQ-jb-nFq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="Cs4-3i-pOS"/>
-                            <constraint firstItem="fLb-YB-PfE" firstAttribute="leading" secondItem="CDn-7Y-7cc" secondAttribute="trailing" constant="140" id="PX2-Kh-EzH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="OgO-F6-8dm" secondAttribute="bottom" constant="164" id="Jvr-zT-X5c"/>
+                            <constraint firstItem="fLb-YB-PfE" firstAttribute="leading" secondItem="CDn-7Y-7cc" secondAttribute="trailing" constant="100" id="PX2-Kh-EzH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ypQ-jb-nFq" secondAttribute="trailing" constant="25" id="WJH-aB-XBT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="CDn-7Y-7cc" secondAttribute="bottom" constant="128" id="dbN-iR-4Id"/>
                             <constraint firstItem="fLb-YB-PfE" firstAttribute="top" secondItem="ypQ-jb-nFq" secondAttribute="bottom" constant="51" id="mMy-EF-Cis"/>
@@ -54,6 +64,7 @@
                     <connections>
                         <outlet property="boardView" destination="ypQ-jb-nFq" id="huU-nv-6CM"/>
                         <outlet property="dice" destination="fLb-YB-PfE" id="nSo-Hq-lEd"/>
+                        <outlet property="textView" destination="OgO-F6-8dm" id="b0Y-j8-v0m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

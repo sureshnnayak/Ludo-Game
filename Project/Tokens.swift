@@ -12,8 +12,8 @@ class Token:Hashable{
     public var color:String
     public var location: String
     //public var locationY: Int
-    private var inHome: BooleanLiteralType
-    private var inBase: BooleanLiteralType
+    public var inHome: BooleanLiteralType
+    public var inBase: BooleanLiteralType
     public let imageName: String
     public var homeLocation: String
     public var homeStretch: Bool
@@ -51,6 +51,11 @@ class Token:Hashable{
         self.location = String(format: "%02d",row) + String(format: "%02d", col)
         //self.id = String(format: "%02d",row) + String(format: "%02d", col)  // need to update
         self.inBase = false
+    }
+    
+    public func goToBase(){
+        self.location = self.homeLocation
+        self.inBase = true
     }
     
 //    func removeFromBase(row: Int, col: Int, val:Int){

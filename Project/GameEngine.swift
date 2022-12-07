@@ -47,9 +47,9 @@ class GameEngine{
     }
     
     func initializePlayers(){
-        let colors = ["red","yellow"]
+        let colors = ["green","yellow","blue","red"]
         var player: Player
-        for i in 0...(1){
+        for i in 0...(colors.count-1){
 //            var human:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: colors[i])
 //            self.players.append(human)
             player = HumanCreator().createPlayer(playerId: "P"+String(i), name: "Player"+String(i), color: colors[i])
@@ -70,9 +70,9 @@ class GameEngine{
         var cell:String = token.location
         var cellArray:Array<String>
         
-        print("before removing" , cell, board[cell]?.tokens)
+        //print("before removing" , cell, board[cell]?.tokens)
         board[cell]?.removeToken(tokenId: token.id)
-        print("After removing" , cell, board[cell]?.tokens)
+        //print("After removing" , cell, board[cell]?.tokens)
         
         // home location
         if diceVal == 6 && token.location == token.homeLocation{
@@ -102,16 +102,42 @@ class GameEngine{
             }
         
         }
-        print("before adding" , cell, board[cell]?.tokens)
+        //print("before adding" , cell, board[cell]?.tokens)
         board[cell]?.addToken(tokenId: token.id)
-        print("After adding" , cell, board[cell]?.tokens)
+        //print("After adding" , cell, board[cell]?.tokens)
         
         var row: Int = Int(cell.prefix(2)) ?? 0
         var col: Int = Int(cell.suffix(2)) ?? 0
         token.updateLocation(row:row , col: col)
-        
+        kill(token: token)
     }
     
+    func kill(token: Token){
+        var location = token.location
+        var otherTokens = board[location]?.tokens
+        if(otherTokens!.count>1){
+            print("triggered1")
+            print(otherTokens!.count)
+            var otherTokenId = otherTokens![0]
+            var othertokenPlayerId = otherTokenId.prefix(2)
+            if( othertokenPlayerId != token.id.prefix(2)){
+                print("triggered2")
+                for opponentPlayer in players{
+                    if(opponentPlayer.id == othertokenPlayerId){
+                        print("triggered3")
+                        for opptoken in opponentPlayer.tokens{
+                            if(opptoken.id == otherTokenId){
+                                print("triggered4")
+                                opptoken.goToBase()
+                                print(token.id, " killed ", opptoken.id)
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     
 //    func moveToken (startRow: Int, startColumn: Int, endRow: Int, endCol: Int, diceValue: Int){
 //        var activePlayer : Player = players[1]
