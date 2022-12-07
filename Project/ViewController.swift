@@ -58,15 +58,15 @@ class ViewController: UIViewController{//}, LudoDelegate {
         
 //        textView.text(in: "Player")
         nextPlayer = (prevPlayer + 1 ) % boardView.shadowPlayers.count
-        currentPlayer = boardView.shadowPlayers[nextPlayer]
+        currentPlayer = boardView.shadowPlayers[prevPlayer]
         gameEngine.move(player: currentPlayer, diceVal: diceVal)
-        textView.text = "Player " + currentPlayer.id + "'s turn"
+        textView.text = "Player " + boardView.shadowPlayers[nextPlayer].color + "'s turn"
          //move(diceVal)
          prevPlayer = nextPlayer
 //         if nextplayer is computer{
 //         rollDice((Any).self)
 //         }
-         
+
          
          /*/////
          1. Ask the used which icon to move
