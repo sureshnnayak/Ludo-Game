@@ -16,23 +16,41 @@ class GameEngine{
     private init(){
         
     }
+    
+    
+//    let block: (Int) -> Void = { total in
+//       print(“Sum of the first 1000 number is \(total)”)
+//    }
+    /*
+     ask user to pick the token
+     */
+    func pickToken(completionHandler: (Int) -> Void){
+        var entered :Bool = true
+        while (entered){
+            // cell values and compare it with the token.location values
+        }
+        
+    }
     /*
      select the token based in the pyer object passed and call move on one of the token
      */
     func move(player:Player, diceVal:Int){
+        var moveableTokens: Set<Token> = Set<Token>()
         
         for t in player.tokens{
             if player.canMove(token: t, diceVal: diceVal){
+                moveableTokens.insert(t)
                 //moveToken(token:t, diceVal: diceVal)
-                player.move(token: t, diceVal: diceVal)
-                if(killRequired(token: t)){
-                    player.kill(token: t)
-                }
-                return
             }
         }
+        //pickToken()
         //iterate through all the token to find and mpvable token
-        
+        //player.move(token: t, diceVal: diceVal)
+        if(killRequired(token: t)){
+            player.kill(token: t)
+        }
+        //moveToken(token:t, diceVal: diceVal)
+        return
     }
     
     func initializeGame(){
@@ -64,9 +82,19 @@ class GameEngine{
                 let location = userToken.location
                 let test: Cell = board[location]!
                 test.addToken(tokenId: userToken.id)
+                print(test.tokens)
                 //print(test.tokens)
             }
+        //print("before adding" , cell, board[cell]?.tokens)
+        board[cell]?.addToken(tokenId: token.id)
+        //print("After adding" , cell, board[cell]?.tokens)
+        if cell == token.finalLocation{
+            token.inHome = true
         }
+        var row: Int = Int(cell.prefix(2)) ?? 0
+        var col: Int = Int(cell.suffix(2)) ?? 0
+        token.updateLocation(row:row , col: col)
+        kill(token: token)
     }
     
 //    func moveToken(token:Token, diceVal: Int){

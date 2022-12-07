@@ -12,7 +12,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
     var gameEngine: GameEngine = GameEngine.shared
     var diceVal: Int = 5
     var prevPlayer:Int = 0
-    //var gameOver = false
+    var gameOver:Bool = false
     
     @IBOutlet weak var dice: UIImageView!
     @IBOutlet weak var boardView: BoardView!

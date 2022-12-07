@@ -35,12 +35,16 @@ class Token:Hashable{
         //self.finalLocation = homelocation // Need to change
      }
     
+    /*
+     return true if the token is not in home or starting position
+     */
      public func isTokeninPlay() -> Bool{
          if(self.inHome || self.inBase){
              return false
         }
         return true;
     }
+    
     
     public func updateLocation(row: Int, col: Int){
 //        if (self.inBase == true){
@@ -58,6 +62,8 @@ class Token:Hashable{
         }
     }
     
+    /* Update the location to starting location
+     */
     public func goToBase(){
         self.location = self.homeLocation
         self.inBase = true
