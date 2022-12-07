@@ -50,7 +50,12 @@ class Token:Hashable{
         //self.locationY = col
         self.location = String(format: "%02d",row) + String(format: "%02d", col)
         //self.id = String(format: "%02d",row) + String(format: "%02d", col)  // need to update
-        self.inBase = false
+        if (self.location != self.homeLocation){
+            self.inBase = false
+        }
+        if (self.location == self.finalLocation){
+            self.inHome = true
+        }
     }
     
     public func goToBase(){
