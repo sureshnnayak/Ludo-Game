@@ -48,10 +48,12 @@ class BoardView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
-        
+        var gameEngine: GameEngine = GameEngine.shared
         let fromCol : Int = Int((fingerLocation.x - origionX)/cellSide)
         let fromRow : Int = Int((fingerLocation.y - origionY)/cellSide)
         print(fromCol,fromRow)
+        gameEngine.fromCol = fromCol
+        gameEngine.fromRow = fromRow
         //ludoDelegate?.moveToken(startRow: fromCol, startColumn: fromRow, endRow: 06, endCol: 13, diceValue: <#T##Int#>)
     }
     

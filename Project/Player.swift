@@ -70,6 +70,7 @@ class Human:Player{
                 }
             }
         }
+        print("returning True")
         return true;
     }
     

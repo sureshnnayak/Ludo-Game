@@ -10,46 +10,74 @@ import Foundation
 class GameEngine{
     var players: [Player] = []
     var board = [String:Cell]()
+    var fromCol : Int = 0
+    var fromRow : Int = 0
     
-    static var shared : GameEngine = GameEngine()
+    static var shared : GameEngine = GameEngine() //singleton
     
     private init(){
         
     }
-    
-    
-//    let block: (Int) -> Void = { total in
-//       print(“Sum of the first 1000 number is \(total)”)
-//    }
-    /*
-     ask user to pick the token
-     */
-    func pickToken(completionHandler: (Int) -> Void){
+
+    /* ask user to pick the token */
+    func pickToken( moveableTokens: Set<Token> , completion: @escaping (Token) -> Void){
         var entered :Bool = true
-        while (entered){
-            // cell values and compare it with the token.location values
-        }
-        
+        var location = String(format: "%02d",0) + String(format: "%02d", 0)
+        print("insid pick")
+        //while (entered){
+            print("inside while")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 8) { [self] in
+                for t in moveableTokens{
+                    location = String(format: "%02d",fromCol) + String(format: "%02d", fromRow)
+                    print("selected cell",location,t.location)
+                    if t.location == location{
+                        entered = false
+                        print("moving",location)
+                        completion(t)
+                    }
+                    //completion(t)
+                }
+            }
+        //}
     }
-    /*
-     select the token based in the pyer object passed and call move on one of the token
-     */
+    
+    /* select the token based in the pyer object passed and call move on one of the token */
     func move(player:Player, diceVal:Int){
         var moveableTokens: Set<Token> = Set<Token>()
         
         for t in player.tokens{
             if player.canMove(token: t, diceVal: diceVal){
                 moveableTokens.insert(t)
+                //selectedToken  = t// temporary
                 //moveToken(token:t, diceVal: diceVal)
             }
         }
-        //pickToken()
-        //iterate through all the token to find and mpvable token
-        //player.move(token: t, diceVal: diceVal)
-        if(killRequired(token: t)){
-            player.kill(token: t)
+        if moveableTokens.count == 0{
+            return
         }
-        //moveToken(token:t, diceVal: diceVal)
+        print("movable token count ",moveableTokens.count)
+        var selectedToken:Token = moveableTokens.first!
+        if moveableTokens.count > 1 {
+            print("inside select")
+            pickToken(moveableTokens: moveableTokens){ t in
+                player.move(token: selectedToken, diceVal: diceVal)
+                print("token selected")
+            }
+            if(killRequired(token: selectedToken)){
+                player.kill(token: selectedToken)
+            }
+        }
+        else{
+            //iterate through all the token to find and movable token
+            player.move(token: selectedToken, diceVal: diceVal)
+            
+            if(killRequired(token: selectedToken)){
+                player.kill(token: selectedToken)
+            }
+            //moveToken(token:t, diceVal: diceVal)
+        }
+        
+        
         return
     }
     
@@ -72,8 +100,8 @@ class GameEngine{
         let colors = ["yellow","blue","red","green"]
         var player: Player
         for i in 0...(colors.count-1){
-//            var human:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: colors[i])
-//            self.players.append(human)
+            //            var human:Human = Human(id: "P"+String(i), name: "Player"+String(i), color: colors[i])
+            //            self.players.append(human)
             player = HumanCreator().createPlayer(playerId: "P"+String(i), name: "Player"+String(i), color: colors[i])
             self.players.append(player)
         }
@@ -85,16 +113,17 @@ class GameEngine{
                 print(test.tokens)
                 //print(test.tokens)
             }
-        //print("before adding" , cell, board[cell]?.tokens)
-        board[cell]?.addToken(tokenId: token.id)
-        //print("After adding" , cell, board[cell]?.tokens)
-        if cell == token.finalLocation{
-            token.inHome = true
+//            //print("before adding" , cell, board[cell]?.tokens)
+//            board[cell]?.addToken(tokenId: token.id)
+//            //print("After adding" , cell, board[cell]?.tokens)
+//            if cell == token.finalLocation{
+//                token.inHome = true
+//            }
+//            var row: Int = Int(cell.prefix(2)) ?? 0
+//            var col: Int = Int(cell.suffix(2)) ?? 0
+//            token.updateLocation(row:row , col: col)
+//            kill(token: token)
         }
-        var row: Int = Int(cell.prefix(2)) ?? 0
-        var col: Int = Int(cell.suffix(2)) ?? 0
-        token.updateLocation(row:row , col: col)
-        kill(token: token)
     }
     
 //    func moveToken(token:Token, diceVal: Int){
