@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 
-class BoardView: UIView {
+class BoardView: UIView , Subscriber{
     let ratio: CGFloat = 0.9
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
@@ -51,5 +51,43 @@ class BoardView: UIView {
         print(fromCol,fromRow)
         gameEngine.fromCol = fromCol
         gameEngine.fromRow = fromRow
+    }
+    
+    func update(message: String) {
+        let words = message.components(separatedBy: " ")
+        let length = words.count
+        var messageType: String
+        if (length == 6){
+            messageType = "Kill"
+        }
+        else{
+            messageType = "Move"
+        }
+        
+        if(messageType == "Move"){
+            var playerId = words[1]
+            var tokenId = words[4]
+            var location = words[6]
+            for shadowPlayer in shadowPlayers {
+                if(shadowPlayer.id == playerId){
+                    for token in shadowPlayer.tokens{
+                        if(token.id == tokenId){
+                            token.location = location
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            var tokenId = words[2]
+            var location = words[5]
+            for shadowPlayer in shadowPlayers {
+                for token in shadowPlayer.tokens{
+                    if(token.id == tokenId){
+                        token.location = location
+                    }
+                }
+            }
+        }
     }
 }

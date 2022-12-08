@@ -7,14 +7,14 @@
 
 import Foundation
 
-class GameEngine{
+class GameEngine : EventManager{
     var players: [Player] = []
     var board = [String:Cell]()
     var fromCol : Int = 0
     var fromRow : Int = 0
     static var shared : GameEngine = GameEngine() //singleton
     
-    private init(){
+    override private init(){
         
     }
 
@@ -59,7 +59,9 @@ class GameEngine{
             command = ComputerMoveCommand(player: player as! Computer, diceVal: diceVal)
             command.execute(playingToken: selectedToken)
             if(killRequired(token: selectedToken)){
-                player.kill(token: selectedToken)
+                command = ComputerKillCommand(player: player as! Computer)
+                command.execute(playingToken: selectedToken)
+                //player.kill(token: selectedToken)
             }
         }
         else{
@@ -76,7 +78,8 @@ class GameEngine{
                 }
                 //command.execute(playingToken: selectedToken)
                 if(killRequired(token: selectedToken)){
-                    player.kill(token: selectedToken)
+                    command = HumanKillCommand(player: player as! Human)
+                    command.execute(playingToken: selectedToken)
                 }
             }
             else{
@@ -84,14 +87,15 @@ class GameEngine{
                 command.execute(playingToken: selectedToken)
                 
                 if(killRequired(token: selectedToken)){
-                    player.kill(token: selectedToken)
+                    command = HumanKillCommand(player: player as! Human)
+                    command.execute(playingToken: selectedToken)
+                    notifySubscribers(message: "Token killed" + selectedToken.id + " moved to " + selectedToken.location)
                 }
                 //moveToken(token:t, diceVal: diceVal)
             }
         }
         
-        
-        return
+        notifySubscribers(message: "Player " + player.id + " moved token " + selectedToken.id + " to " + selectedToken.location)
     }
     
     func initializeGame(){
