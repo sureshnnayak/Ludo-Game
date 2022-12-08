@@ -7,10 +7,12 @@
 
 import Foundation
 
+//Command pattern is implemented here to move and kill player tokens
 protocol Command{
     func execute(playingToken:Token)
 }
 
+//Human move commmand
 class HumanMoveCommand:Command{
     let dice: Int
     let player: Human
@@ -25,6 +27,7 @@ class HumanMoveCommand:Command{
     }
 }
 
+//Human kill commmand
 class HumanKillCommand:Command{
     let player: Human
     
@@ -37,6 +40,7 @@ class HumanKillCommand:Command{
     }
 }
 
+//Computer move commmand
 class ComputerMoveCommand:Command{
     let dice: Int
     let player: Computer
@@ -51,6 +55,7 @@ class ComputerMoveCommand:Command{
     }
 }
 
+//Computer kill commmand
 class ComputerKillCommand:Command{
     let player: Computer
     

@@ -24,9 +24,10 @@ class ViewController: UIViewController{//}, LudoDelegate {
         
         gameEngine.initializeGame()
         boardView.shadowPlayers = gameEngine.players
+        gameEngine.registerSubscriber(sub: boardView)
         
         dice.image = UIImage(named: "five")
-        textView.text = boardView.shadowPlayers[0].id + " starts game"
+        textView.text = boardView.shadowPlayers[0].color + " starts game"
     }
 
     @IBAction func rollDice(_ sender: Any) {
@@ -43,8 +44,9 @@ class ViewController: UIViewController{//}, LudoDelegate {
         textView.text = "Player " + boardView.shadowPlayers[nextPlayer].color + "'s turn"
 
         prevPlayer = nextPlayer
-
-        boardView.shadowPlayers = gameEngine.players
-        boardView.setNeedsDisplay()
+        
+        //boardView.shadowPlayers = gameEngine.players
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4){[self] in
+            boardView.setNeedsDisplay()}
     }
 }
