@@ -27,7 +27,7 @@ class ViewController: UIViewController{//}, LudoDelegate {
         gameEngine.registerSubscriber(sub: boardView)
         
         dice.image = UIImage(named: "five")
-        textView.text = boardView.shadowPlayers[0].id + " starts game"
+        textView.text = boardView.shadowPlayers[0].color + " starts game"
     }
 
     @IBAction func rollDice(_ sender: Any) {
