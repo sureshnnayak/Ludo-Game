@@ -11,6 +11,7 @@ protocol Player{
     var id:String { get set }
     var tokens: Set<Token> { get set }
     var color: String  { get set }
+    var type:String { get set }
     func rollDice() -> Int
     func canMove(token: Token, diceVal:Int) -> Bool // take Dice input
     func move(token: Token, diceVal: Int)
@@ -25,10 +26,12 @@ class Human:Player{
     var color: String
     var board: [String:Cell]
     var players: [Player]
+    var type:String
     
     init(id:String, name: String, color: String){
         self.id = id
         self.name = name
+        self.type = "Human"
         self.color = color
         self.board = GameEngine.shared.board
         self.players = GameEngine.shared.players
@@ -81,6 +84,7 @@ class Human:Player{
         
         board[cell]?.removeToken(tokenId: token.id)
         print("token ",token.id," moved from ", cell)
+        
         // If token is in home location
         if diceVal == 6 && token.location == token.homeLocation{
             cellArray = cellMapping[cell]![2] as! Array<String>
@@ -143,7 +147,7 @@ class Computer:Player{
     //var color:String
     var tokens: Set<Token> = Set<Token>()
     var color:String
-    
+    var type:String
     var board: [String:Cell] = GameEngine.shared.board
     var players: [Player] = GameEngine.shared.players
     
@@ -151,6 +155,7 @@ class Computer:Player{
         self.id = id
         self.name = name
         self.color = color
+        self.type = "Computer"
         self.initializeTokens()
         
     }
@@ -178,6 +183,7 @@ class Computer:Player{
         var cellArray:Array<String>
         
         board[cell]?.removeToken(tokenId: token.id)
+        print("token ",token.id," moved from ", cell)
         
         // If token is in home location
         if diceVal == 6 && token.location == token.homeLocation{
@@ -207,6 +213,7 @@ class Computer:Player{
         let col: Int = Int(cell.suffix(2)) ?? 0
         token.updateLocation(row:row , col: col)
         board[cell]?.addToken(tokenId: token.id)
+        print(" to  ",cell )
     }
     
     func kill(token: Token){
@@ -214,6 +221,8 @@ class Computer:Player{
         var otherTokens = board[location]?.tokens
         var otherTokenId = otherTokens![0]
         var othertokenPlayerId = otherTokenId.prefix(2)
+        self.board = GameEngine.shared.board
+        self.players = GameEngine.shared.players
         for opponentPlayer in players{
             if(opponentPlayer.id == othertokenPlayerId){
                 for opptoken in opponentPlayer.tokens{
@@ -221,30 +230,12 @@ class Computer:Player{
                         opptoken.goToBase()
                         board[location]?.removeToken(tokenId: opptoken.id)
                         board[opptoken.location]?.addToken(tokenId: opptoken.id)
-                        print(token.id, " killed ", opptoken.id)
+                        print(token.id, " killed ", opptoken.id, "removed from ", location, " and added to", opptoken.location)
+                        print(board[location]?.tokens)
                     }
                 }
             }
         }
     }
     
-    
 }
-
-protocol PlayerCreator{
-    func createPlayer(playerId:String, name:String, color: String)->Player;
-}
-
-class HumanCreator:PlayerCreator{
-    func createPlayer(playerId:String, name:String, color: String)->Player{
-        return Human(id:playerId , name: name, color: color)
-    }
-}
-
-class ComputerCreator:PlayerCreator{
-    func createPlayer(playerId:String, name:String, color: String)->Player{
-        return Computer(id:playerId , name: name, color: color)
-    }
-}
-
-

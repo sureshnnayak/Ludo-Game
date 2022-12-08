@@ -8,14 +8,12 @@
 import UIKit
 import Foundation
 
-class BoardView: UIView {
+class BoardView: UIView , Subscriber{
     let ratio: CGFloat = 0.9
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-    //var layout: Layout = Layout(cellSide: 0, origionX: 0, origionY: 0, ratio: 0)
     var shadowPlayers : [Player] = []
-    //var ludoDelegate : LudoDelegate? = nil
     
     override func draw(_ rect: CGRect) {
    
@@ -34,7 +32,6 @@ class BoardView: UIView {
         
         for human in shadowPlayers{
             for token in human.tokens{
-                //var c:String = token.color
                 let pieceImage = UIImage(named:token.imageName)
                 let x = Int(token.location.prefix(2))!
                 let y = Int(token.location.suffix(2))!
@@ -54,28 +51,43 @@ class BoardView: UIView {
         print(fromCol,fromRow)
         gameEngine.fromCol = fromCol
         gameEngine.fromRow = fromRow
-        //ludoDelegate?.moveToken(startRow: fromCol, startColumn: fromRow, endRow: 06, endCol: 13, diceValue: <#T##Int#>)
     }
     
-    
-//    func drawBoard(){
-//        for i in 0...14{
-//            for j in 0...14{
-//                if (i+j)%2 == 0{
-//                    drawSquare(col:j, row: i, color: UIColor.yellow)
-//                }
-//                else{
-//                    drawSquare(col: j, row: i, color: UIColor.green)
-//                }
-//            }
-//        }
-//
-//
-//    }
-//    func drawSquare(col: Int, row: Int, color: UIColor){
-//        let path = UIBezierPath(rect: CGRect(x: origionX + CGFloat(col) * cellSide, y: origionY  + CGFloat(row)*cellSide, width: cellSide, height: cellSide))
-//        color.setFill()
-//        path.fill()
-//    }
-
+    func update(message: String) {
+        let words = message.components(separatedBy: " ")
+        let length = words.count
+        var messageType: String
+        if (length == 6){
+            messageType = "Kill"
+        }
+        else{
+            messageType = "Move"
+        }
+        
+        if(messageType == "Move"){
+            var playerId = words[1]
+            var tokenId = words[4]
+            var location = words[6]
+            for shadowPlayer in shadowPlayers {
+                if(shadowPlayer.id == playerId){
+                    for token in shadowPlayer.tokens{
+                        if(token.id == tokenId){
+                            token.location = location
+                        }
+                    }
+                }
+            }
+        }
+        else{
+            var tokenId = words[2]
+            var location = words[5]
+            for shadowPlayer in shadowPlayers {
+                for token in shadowPlayer.tokens{
+                    if(token.id == tokenId){
+                        token.location = location
+                    }
+                }
+            }
+        }
+    }
 }

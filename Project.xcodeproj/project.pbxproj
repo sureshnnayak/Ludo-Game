@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		180D688829388E8D00E0D13D /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D688729388E8D00E0D13D /* GameEngine.swift */; };
-		180D688A29393B1800E0D13D /* LudoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180D688929393B1800E0D13D /* LudoDelegate.swift */; };
+		1873386E2942655300602139 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873386D2942655300602139 /* Commands.swift */; };
+		187338702942774B00602139 /* PlayerCreators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873386F2942774B00602139 /* PlayerCreators.swift */; };
+		1873387229427A3B00602139 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1873387129427A3B00602139 /* Observer.swift */; };
 		18737267293464D200A32397 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18737266293464D200A32397 /* Player.swift */; };
 		18E4E6DB293C75290097311F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E4E6DA293C75290097311F /* Cell.swift */; };
 		F96796EF2933F5A20045AA9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96796EE2933F5A20045AA9F /* AppDelegate.swift */; };
@@ -45,10 +47,11 @@
 
 /* Begin PBXFileReference section */
 		180D688729388E8D00E0D13D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
-		180D688929393B1800E0D13D /* LudoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LudoDelegate.swift; sourceTree = "<group>"; };
+		1873386D2942655300602139 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		1873386F2942774B00602139 /* PlayerCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCreators.swift; sourceTree = "<group>"; };
+		1873387129427A3B00602139 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		18737266293464D200A32397 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		18E4E6DA293C75290097311F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
-		F9364C94293AD7D600C432AA /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		F96796EB2933F5A20045AA9F /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96796EE2933F5A20045AA9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F96796F02933F5A20045AA9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,14 +120,12 @@
 			isa = PBXGroup;
 			children = (
 				F96796EE2933F5A20045AA9F /* AppDelegate.swift */,
-				180D688929393B1800E0D13D /* LudoDelegate.swift */,
 				F96796F02933F5A20045AA9F /* SceneDelegate.swift */,
 				F96797202933F63A0045AA9F /* BoardView.swift */,
 				18737266293464D200A32397 /* Player.swift */,
 				F9679722293406B90045AA9F /* Layout.swift */,
 				F9F149C42935ECB100C977C7 /* BoardStructure.swift */,
 				F96796F22933F5A20045AA9F /* ViewController.swift */,
-				F9364C94293AD7D600C432AA /* TODO.md */,
 				F96796F42933F5A20045AA9F /* Main.storyboard */,
 				F982484C29343F1100962437 /* Tokens.swift */,
 				F96796F72933F5A40045AA9F /* Assets.xcassets */,
@@ -132,6 +133,9 @@
 				F96796FC2933F5A40045AA9F /* Info.plist */,
 				180D688729388E8D00E0D13D /* GameEngine.swift */,
 				18E4E6DA293C75290097311F /* Cell.swift */,
+				1873386D2942655300602139 /* Commands.swift */,
+				1873386F2942774B00602139 /* PlayerCreators.swift */,
+				1873387129427A3B00602139 /* Observer.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -284,13 +288,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				180D688A29393B1800E0D13D /* LudoDelegate.swift in Sources */,
+				1873387229427A3B00602139 /* Observer.swift in Sources */,
 				F9F149C52935ECB100C977C7 /* BoardStructure.swift in Sources */,
 				F96796F32933F5A20045AA9F /* ViewController.swift in Sources */,
 				F96797212933F63A0045AA9F /* BoardView.swift in Sources */,
 				F9679723293406B90045AA9F /* Layout.swift in Sources */,
 				F96796EF2933F5A20045AA9F /* AppDelegate.swift in Sources */,
 				18737267293464D200A32397 /* Player.swift in Sources */,
+				1873386E2942655300602139 /* Commands.swift in Sources */,
+				187338702942774B00602139 /* PlayerCreators.swift in Sources */,
 				F96796F12933F5A20045AA9F /* SceneDelegate.swift in Sources */,
 				18E4E6DB293C75290097311F /* Cell.swift in Sources */,
 				180D688829388E8D00E0D13D /* GameEngine.swift in Sources */,

@@ -19,7 +19,6 @@ class Layout{
     var origionX: CGFloat = -10
     var origionY: CGFloat = -10
     var cellSide: CGFloat =  10
-    //var arr = Array(repeating: Array(repeating: Cell.self, count: 2), count: 3)
     
     static var shared : Layout = Layout()
     
@@ -35,13 +34,8 @@ class Layout{
     
     func constreuctKey(x: Int, y:Int)->String{
         return String(format: "%02d",x) + String(format: "%02d", y)
-        //return "0101"
-        //return : create the key (4 digits)
     }
     func populateCell( key:String)->Box{
-       // var cell : Cell = Cell(id: key, color: callMapping[key][0],nextCell: callMapping[key][1], safe: callMapping[key][2])
-        //let col : Int = (callMapping[key])!
-        //print("\(#function)",key, callMapping[key]![0], "\n" )
         var box : Box = Box(id: key, color: Int(truncating: cellMapping[key]![0] as! NSNumber))
         return box
         
@@ -82,14 +76,12 @@ class Layout{
                 }
             }
         }
-        
-     
     }
+    
     func drawCell(col: Int, row: Int, color: UIColor){
         let path = UIBezierPath(rect: CGRect(x: origionX + CGFloat(col) * cellSide, y: origionY  + CGFloat(row)*cellSide, width: cellSide, height: cellSide))
         color.setFill()
         path.fill()
         
     }
-
 }
