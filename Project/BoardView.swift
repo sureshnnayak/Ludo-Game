@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 
+// This class is used to display the Ludo board in Ui
 class BoardView: UIView , Subscriber{
     let ratio: CGFloat = 0.9
     var origionX: CGFloat = -10
@@ -28,6 +29,7 @@ class BoardView: UIView , Subscriber{
      
     }
     
+    //This function is used to draw the tokens
     func drawPieces(){
         
         for human in shadowPlayers{
@@ -42,6 +44,7 @@ class BoardView: UIView , Subscriber{
         
     }
     
+    // This function is used to get the coordinates of a users click
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let first = touches.first!
         let fingerLocation = first.location(in: self)
@@ -53,10 +56,16 @@ class BoardView: UIView , Subscriber{
         gameEngine.fromRow = fromRow
     }
     
+    /*
+     This update function is part of Subscriber implementation
+     The players are updated based on the message sent by the publisher
+     */
     func update(message: String) {
         let words = message.components(separatedBy: " ")
         let length = words.count
         var messageType: String
+        
+        // Move message is longer than Kill message
         if (length == 6){
             messageType = "Kill"
         }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+//This class defines the properties of a token
 class Token:Hashable{
     public var id:String
     public var color:String
@@ -40,7 +41,7 @@ class Token:Hashable{
         return true;
     }
     
-    
+    //Updates a tokens location based on given row/column details
     public func updateLocation(row: Int, col: Int){
         self.location = String(format: "%02d",row) + String(format: "%02d", col)
         if (self.location != self.homeLocation){
@@ -51,7 +52,8 @@ class Token:Hashable{
         }
     }
     
-    /* Update the location to starting location
+    /*
+     Update the location to starting location
      */
     public func goToBase(){
         self.location = self.homeLocation

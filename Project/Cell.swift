@@ -7,6 +7,7 @@
 
 import Foundation
 
+//This class holds the properties of cells in the LudoBoard
 class Cell: Hashable{
     
     var id: String

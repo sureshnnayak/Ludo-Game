@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Observer pattern is implemented here for updating players status across classes
 protocol Publisher{
     func registerSubscriber(sub:Subscriber)
     func removeSubscriber(sub:Subscriber)
@@ -19,7 +20,7 @@ protocol Subscriber{
 
 class EventManager : Publisher {
     
-    //Gives the list of current listeners
+    //List of current listeners
     var listeners : [Subscriber] = []
 
     // New subscriber is added to list of listeners using this method

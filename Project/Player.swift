@@ -7,17 +7,18 @@
 
 import Foundation
 
+//Interface that describes the main members of a player
 protocol Player{
-    var id:String { get set }
-    var tokens: Set<Token> { get set }
-    var color: String  { get set }
-    var type:String { get set }
-    func rollDice() -> Int
-    func canMove(token: Token, diceVal:Int) -> Bool // take Dice input
-    func move(token: Token, diceVal: Int)
-    func kill(token: Token)
+    var id:String { get set }                       // Unique player id
+    var tokens: Set<Token> { get set }              // Set of 4 tokens
+    var color: String  { get set }                  // Defines the players color
+    var type:String { get set }                     // Tells us HHuman or Computer type player
+    func canMove(token: Token, diceVal:Int) -> Bool // Check if given token can move for the given dice value
+    func move(token: Token, diceVal: Int)           //Moves the given token based on the given dice value
+    func kill(token: Token)                         //Finds and kills a opponents token present in same box as given token
 }
 
+//This class is used  to create Human Players
 class Human:Player{
     
     var id:String
@@ -38,6 +39,7 @@ class Human:Player{
         self.initializeTokens()
     }
     
+    //Player's tokens are initialized
     func initializeTokens(){
         tokens.removeAll()
         let homeIds : [String] = tokenHomes[self.color]!
@@ -47,10 +49,7 @@ class Human:Player{
         }
     }
     
-    func rollDice() -> Int {
-        return Int.random(in: 1...6)
-    }
-    
+    // To check if the given token can move from its currennt location
     func canMove(token: Token, diceVal:Int) -> Bool {
         if token.homeLocation == token.location{
             if diceVal != 6{
@@ -73,10 +72,10 @@ class Human:Player{
                 }
             }
         }
-        print("returning True")
         return true;
     }
     
+    //This function is used to move a token from one box to another
     func move(token: Token, diceVal: Int){
         var temp:Int = diceVal
         var cell:String = token.location
@@ -116,6 +115,7 @@ class Human:Player{
         print(" to  ",cell )
     }
     
+    //This function is used to kill an opponents token present in the same box
     func kill(token: Token){
         var location = token.location
         var otherTokens = board[location]?.tokens
@@ -140,11 +140,11 @@ class Human:Player{
     
 }
 
+//This class is used  to create Computer Players
 class Computer:Player{
     
     var id:String
     var name:String
-    //var color:String
     var tokens: Set<Token> = Set<Token>()
     var color:String
     var type:String
@@ -160,6 +160,7 @@ class Computer:Player{
         
     }
     
+    //Player's tokens are initialized
     func initializeTokens(){
         tokens.removeAll()
         let homeIds : [String] = tokenHomes[self.color]!
@@ -169,14 +170,33 @@ class Computer:Player{
         }
     }
     
-    func rollDice() -> Int {
-        return Int.random(in: 1...6)
-    }
-    
+    // To check if the given token can move from its currennt location
     func canMove(token: Token, diceVal:Int) -> Bool {
+        if token.homeLocation == token.location{
+            if diceVal != 6{
+                return false
+            }
+        }
+        
+        if token.homeStretch {
+            var temp:Int = diceVal
+            var cell:String = token.location
+            
+            while(temp > 0){
+                //get next cell()
+                temp = temp - 1
+                var cellArray:Array<String>
+                cellArray = cellMapping[cell]![2] as! Array<String>
+                cell = cellArray[0]
+                if cell == token.finalLocation && temp != 0{
+                    return false
+                }
+            }
+        }
         return true;
     }
     
+    //This function is used to move a token from one box to another
     func move(token: Token, diceVal: Int) {
         var temp:Int = diceVal
         var cell:String = token.location
@@ -216,6 +236,7 @@ class Computer:Player{
         print(" to  ",cell )
     }
     
+    //This function is used to kill an opponents token present in the same box
     func kill(token: Token){
         var location = token.location
         var otherTokens = board[location]?.tokens

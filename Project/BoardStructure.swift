@@ -7,16 +7,7 @@
 
 import Foundation
 
-/*
- key: x ,y coordinates values
- val : [color, isSafe, [connectedCells]
- 1: white
- 2: red
- 3. Blue
- 4: green
- 5: yellow
- 6. black
- */
+// Defines cell property for each cell
 public var cellMapping = ["0000":[3,1,["0001"]],
                    "0001":[3,1,["0001"]],
                    "0002":[3,1,["0001"]],
@@ -265,15 +256,19 @@ public var cellMapping = ["0000":[3,1,["0001"]],
                    
 ]
 
+//Gives us the starting locations for each token based on color
 public var tokenHomes = ["red":["1001","1003","1301","1303"],
                          "blue":["0101","0103","0401","0403"],
                          "yellow":["0111","0113","0411","0413"],
                          "green":["1011","1013","1311","1313"]]
+
+//Defines the final location for each token based on its color
 public var finalLocations = ["red":"0706",
                              "blue":"0607",
                              "yellow":"0708",
                              "green":"0807"]
 
+//Internal codes for color conversion reference
 public var colorCodes = ["blue":2,
                          "red":3,
                          "yellow":4,

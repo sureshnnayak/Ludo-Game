@@ -7,6 +7,8 @@
 
 import Foundation
 
+// This class defines the main game logic for Ludo
+// GameEngine is a singleton
 class GameEngine : EventManager{
     var players: [Player] = []
     var board = [String:Cell]()
@@ -25,7 +27,7 @@ class GameEngine : EventManager{
         print("insid pick")
         //while (entered){
         print("inside while")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
             for t in moveableTokens{
                 location = String(format: "%02d",fromCol) + String(format: "%02d", fromRow)
                 print("selected cell",location,t.location)
@@ -98,11 +100,13 @@ class GameEngine : EventManager{
         notifySubscribers(message: "Player " + player.id + " moved token " + selectedToken.id + " to " + selectedToken.location)
     }
     
+    //Initilizes the game
     func initializeGame(){
         initializeBoard()
         initializePlayers()
     }
     
+    //Initilizes the Ludo Board
     func initializeBoard(){
         for cellKey in cellMapping.keys{
             let cellDetails = cellMapping[cellKey]
@@ -113,6 +117,7 @@ class GameEngine : EventManager{
         print(board.count)
     }
     
+    //Initilizes the players
     func initializePlayers(){
         let colors = ["yellow","blue","red","green"]
         var player: Player
@@ -132,6 +137,7 @@ class GameEngine : EventManager{
         print("Players and tokens are initialized")
     }
     
+    //Checks if multiple tokens are in a cell and if the cell is safe
     func killRequired(token: Token)->Bool{
         let location = token.location
         let otherTokens = board[location]?.tokens
