@@ -11,5 +11,5 @@
   Swift version : v5.7.1
   
   ### How to Run
-  Download the code and setup project on Xcode.
+  Download the code and setup project using Xcode instructions.
   Run the application on Apple iPad Simulator
