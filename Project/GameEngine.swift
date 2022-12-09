@@ -26,7 +26,6 @@ class GameEngine : EventManager{
         var location = String(format: "%02d",0) + String(format: "%02d", 0)
         print("insid pick")
         //while (entered){
-        print("inside while")
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
             for t in moveableTokens{
                 location = String(format: "%02d",fromCol) + String(format: "%02d", fromRow)
@@ -48,6 +47,7 @@ class GameEngine : EventManager{
         for t in player.tokens{
             if player.canMove(token: t, diceVal: diceVal){
                 moveableTokens.insert(t)
+                print("token can be moved", t.id)
             }
         }
         if moveableTokens.count == 0{
@@ -55,15 +55,26 @@ class GameEngine : EventManager{
         }
         print("movable token count ",moveableTokens.count)
         var selectedToken:Token = moveableTokens.first!
+
         
         if(player.type == "Computer"){
             print("Computer triggered")
             command = ComputerMoveCommand(player: player as! Computer, diceVal: diceVal)
             command.execute(playingToken: selectedToken)
-            if(killRequired(token: selectedToken)){
-                command = ComputerKillCommand(player: player as! Computer)
-                command.execute(playingToken: selectedToken)
-                //player.kill(token: selectedToken)
+            
+            if moveableTokens.count > 1 {
+                print("inside select")
+                pickToken(moveableTokens: moveableTokens){ t in
+                    selectedToken = t
+                    player.move(token: selectedToken, diceVal: diceVal)
+                    print("token selected")
+                }
+                
+                if(killRequired(token: selectedToken)){
+                    command = ComputerKillCommand(player: player as! Computer)
+                    command.execute(playingToken: selectedToken)
+                    //player.kill(token: selectedToken)
+                }
             }
         }
         else{
