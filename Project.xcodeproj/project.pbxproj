@@ -47,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		180D688729388E8D00E0D13D /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		185706282943BC4200F5C8EC /* Project - 7.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Project - 7.pdf"; sourceTree = "<group>"; };
 		1873386D2942655300602139 /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		1873386F2942774B00602139 /* PlayerCreators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCreators.swift; sourceTree = "<group>"; };
 		1873387129427A3B00602139 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		F96796E22933F5A20045AA9F = {
 			isa = PBXGroup;
 			children = (
+				185706282943BC4200F5C8EC /* Project - 7.pdf */,
 				F96796ED2933F5A20045AA9F /* Project */,
 				F96797042933F5A50045AA9F /* ProjectTests */,
 				F967970E2933F5A50045AA9F /* ProjectUITests */,
