@@ -16,6 +16,7 @@ protocol Player{
     func canMove(token: Token, diceVal:Int) -> Bool // Check if given token can move for the given dice value
     func move(token: Token, diceVal: Int)           //Moves the given token based on the given dice value
     func kill(token: Token)                         //Finds and kills a opponents token present in same box as given token
+    func playerStatus()-> Bool
 }
 
 //This class is used  to create Human Players
@@ -48,9 +49,19 @@ class Human:Player{
             tokens.insert(Token(id: self.id + String(i), homelocation: homeIds[i], color: self.color,img: self.color))
         }
     }
-    
+    // to check if a player WOn
+    func playerStatus()-> Bool{
+        for t in self.tokens{
+            if !t.inHome{
+                return false
+            }
+        }
+        return true
+    }
+        
     // To check if the given token can move from its currennt location
     func canMove(token: Token, diceVal:Int) -> Bool {
+        print("can move called. dice val: ", diceVal)
         if token.homeLocation == token.location{
             if diceVal != 6{
                 return false
@@ -72,6 +83,7 @@ class Human:Player{
                 }
             }
         }
+        print("Token Location: ",token.location)
         return true;
     }
     
@@ -169,9 +181,20 @@ class Computer:Player{
             tokens.insert(Token(id:homeIds[i], homelocation: homeIds[i], color: self.color,img: self.color))
         }
     }
+    // to check if a player WOn
+    func playerStatus()-> Bool{
+        for t in self.tokens{
+            if !t.inHome{
+                return false
+            }
+        }
+        return true
+        
+    }
     
     // To check if the given token can move from its currennt location
     func canMove(token: Token, diceVal:Int) -> Bool {
+        print("can move called")
         if token.homeLocation == token.location{
             if diceVal != 6{
                 return false
@@ -193,6 +216,7 @@ class Computer:Player{
                 }
             }
         }
+        print("Token Location: ",token.location)
         return true;
     }
     

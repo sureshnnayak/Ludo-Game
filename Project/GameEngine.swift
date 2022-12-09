@@ -37,6 +37,7 @@ class GameEngine : EventManager{
                 }
             }
         }
+        print("did not select")
     }
     
     /* select the token based in the pyer object passed and call move on one of the token */
@@ -108,6 +109,9 @@ class GameEngine : EventManager{
             }
         }
         
+        if player.playerStatus(){
+            print("Game Over")
+        }
         notifySubscribers(message: "Player " + player.id + " moved token " + selectedToken.id + " to " + selectedToken.location)
     }
     
